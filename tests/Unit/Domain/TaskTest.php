@@ -3,6 +3,8 @@
 namespace App\Tests\Unit\Domain;
 
 use App\Domain\Task;
+use App\Tests\Unit\Domain\Event\TaskMarkedAsDone;
+use App\Tests\Unit\Util\DataProvider\Assembler\TaskAssembler;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -17,12 +19,26 @@ class TaskTest extends TestCase
         $taskListId = Uuid::fromString('c1630d83-2995-475e-864c-158b3f21542f');
         $userId     = Uuid::fromString('c1630d83-2995-475e-864c-158b3f21542f');
         $content    = 'Very important task';
+        $dueDate = new \DateTimeImmutable();
 
-        $actual = Task::create($id, $taskListId, $userId, $content);
+        $actual = Task::create($id, $taskListId, $userId, $dueDate, $content);
 
         self::assertEquals($id, $actual->id());
         self::assertEquals($taskListId, $actual->taskListId());
         self::assertEquals($userId, $actual->userId());
+        self::assertEquals($dueDate, $actual->dueDate());
         self::assertEquals($content, $actual->content());
+    }
+
+    /**
+     * @test
+     */
+    public function should_mark_as_done(): void
+    {
+        $task = TaskAssembler::new()->assemble();
+        $expected = new TaskMarkedAsDone($task->id()->toString(), $task->userId()->toString());
+
+        $actual = $task->markAsDone($task->userId());
+        self::assertEquals($expected, $actual);
     }
 }
