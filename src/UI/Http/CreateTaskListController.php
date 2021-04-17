@@ -2,13 +2,13 @@
 
 namespace App\UI\Http;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use App\UI\Http\Request\CreateTaskListRequest;
+use App\UI\Http\Response\CreateTaskListResponse;
 
 class CreateTaskListController
 {
-    public function __invoke(): JsonResponse
+    public function __invoke(CreateTaskListRequest $request): CreateTaskListResponse
     {
-        return new JsonResponse([], Response::HTTP_BAD_REQUEST);
+        return CreateTaskListResponse::fromRequest($request);
     }
 }
