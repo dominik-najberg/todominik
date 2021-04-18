@@ -4,7 +4,7 @@ namespace App\Application\Command;
 
 use App\Application\Repository\TaskListRepository;
 use App\Domain\Event\TaskListCreated;
-use App\Domain\TaskList;
+use App\Domain\Task\TaskList;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateTaskListHandler

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain;
+namespace App\Tests\Unit\Domain\Task;
 
-use App\Domain\Task;
+use App\Domain\Task\Task;
 use App\Tests\Unit\Domain\Event\TaskMarkedAsDone;
 use App\Tests\Unit\Util\DataProvider\Assembler\TaskAssembler;
 use PHPUnit\Framework\TestCase;

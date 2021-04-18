@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain;
+namespace App\Tests\Unit\Domain\Task;
 
-use App\Domain\TaskList;
+use App\Domain\Task\TaskList;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

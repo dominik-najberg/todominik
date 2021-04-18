@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Util\DataProvider\Assembler;
 
-use App\Domain\Task;
+use App\Domain\Task\Task;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 

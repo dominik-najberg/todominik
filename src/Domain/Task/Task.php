@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domain;
+namespace App\Domain\Task;
 
 use App\Tests\Unit\Domain\Event\TaskMarkedAsDone;
 use Ramsey\Uuid\UuidInterface;

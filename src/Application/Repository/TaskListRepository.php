@@ -2,7 +2,7 @@
 
 namespace App\Application\Repository;
 
-use App\Domain\TaskList;
+use App\Domain\Task\TaskList;
 
 interface TaskListRepository
 {

@@ -6,7 +6,7 @@ use App\Application\Command\CreateTaskList;
 use App\Application\Command\CreateTaskListHandler;
 use App\Application\Repository\TaskListRepository;
 use App\Domain\Event\TaskListCreated;
-use App\Domain\TaskList;
+use App\Domain\Task\TaskList;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Messenger\Envelope;
