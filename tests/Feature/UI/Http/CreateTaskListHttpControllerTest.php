@@ -2,6 +2,8 @@
 
 namespace App\Tests\Feature\UI\Http;
 
+use App\Domain\Task\TaskList;
+use App\Tests\Integration\Util\Seeder\DbTableTruncator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -17,6 +19,8 @@ class CreateTaskListHttpControllerTest extends WebTestCase
         parent::setUp();
         $this->client  = static::createClient();
         $this->manager = self::$container->get('doctrine')->getManager();
+
+        (new DbTableTruncator($this->manager))->truncate(TaskList::class);
     }
 
 
