@@ -24,7 +24,7 @@ class TaskListAssembler
         return new self();
     }
 
-    public function build(): TaskList
+    public function assemble(): TaskList
     {
         return TaskList::create(
             $this->id,

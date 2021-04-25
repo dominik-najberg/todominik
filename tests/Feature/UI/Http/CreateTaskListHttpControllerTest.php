@@ -41,7 +41,7 @@ class CreateTaskListHttpControllerTest extends WebTestCase
      */
     public function should_create_tasklist_on_valid_request(): void
     {
-        $expected = TaskListAssembler::new()->build();
+        $expected = TaskListAssembler::new()->assemble();
 
         $this->client->request('POST', '/tasklists', [
             'data' => [

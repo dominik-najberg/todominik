@@ -1,4 +1,9 @@
-index:
+create_task_list:
     path: /tasklists
     methods: POST
     controller: App\UI\Http\CreateTaskListController
+
+create_task:
+    path: /tasks
+    methods: POST
+    controller: App\UI\Http\CreateTaskController
