@@ -6,25 +6,25 @@ use Ramsey\Uuid\UuidInterface;
 
 class TaskListCreated
 {
-    private UuidInterface $id;
-    private UuidInterface $userId;
+    private string $id;
+    private string $userId;
     private string $name;
-    private \DateTimeImmutable $createdAt;
+    private string $createdAt;
 
-    public function __construct(UuidInterface $id, UuidInterface $userId, string $name, \DateTimeImmutable $createdAt)
+    public function __construct(string $id, string $userId, string $name, string $createdAt)
     {
-        $this->id        = $id;
-        $this->userId    = $userId;
-        $this->name      = $name;
+        $this->id = $id;
+        $this->userId = $userId;
+        $this->name = $name;
         $this->createdAt = $createdAt;
     }
 
-    public function id(): UuidInterface
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function userId(): UuidInterface
+    public function userId(): string
     {
         return $this->userId;
     }
@@ -34,7 +34,7 @@ class TaskListCreated
         return $this->name;
     }
 
-    public function createdAt(): \DateTimeImmutable
+    public function createdAt(): string
     {
         return $this->createdAt;
     }

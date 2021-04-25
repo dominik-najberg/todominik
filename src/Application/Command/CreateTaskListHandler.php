@@ -25,10 +25,10 @@ class CreateTaskListHandler implements MessageHandlerInterface
 
         $this->eventBus->dispatch(
             new TaskListCreated(
-                $taskList->id(),
-                $taskList->userId(),
+                $taskList->id()->toString(),
+                $taskList->userId()->toString(),
                 $taskList->name(),
-                $command->createdAt(),
+                $command->createdAt()->format('Y-m-d H:i:s.u'),
             )
         );
 
