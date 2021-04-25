@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Unit\Util\DataProvider\Assembler;
+namespace App\Tests\Util\DataProvider\Assembler;
 
 use App\Domain\Task\Task;
 use Ramsey\Uuid\Uuid;

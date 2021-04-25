@@ -4,7 +4,7 @@ namespace App\Tests\Unit\Domain\Task;
 
 use App\Domain\Task\Task;
 use App\Tests\Unit\Domain\Event\TaskMarkedAsDone;
-use App\Tests\Unit\Util\DataProvider\Assembler\TaskAssembler;
+use App\Tests\Util\DataProvider\Assembler\TaskAssembler;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

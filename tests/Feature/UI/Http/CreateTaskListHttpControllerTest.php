@@ -4,6 +4,7 @@ namespace App\Tests\Feature\UI\Http;
 
 use App\Domain\Task\TaskList;
 use App\Tests\Integration\Util\Seeder\DbTableTruncator;
+use App\Tests\Util\DataProvider\Assembler\TaskListAssembler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -38,15 +39,17 @@ class CreateTaskListHttpControllerTest extends WebTestCase
     /**
      * @test
      */
-    public function should_get_http_created_on_valid_request(): void
+    public function should_create_tasklist_on_valid_request(): void
     {
+        $expected = TaskListAssembler::new()->build();
+
         $this->client->request('POST', '/tasklists', [
             'data' => [
                 'type'       => 'tasklists',
-                'id'         => '29ea0ea6-9f89-4019-b187-a90392f0b6ea',
+                'id'         => $expected->id()->toString(),
                 'attributes' => [
-                    'name'    => 'My beautiful task list',
-                    'user_id' => '9d6eeaeb-a4a2-4052-ab55-fe9a15582860',
+                    'name'    => $expected->name(),
+                    'user_id' => $expected->userId()->toString(),
                 ],
             ],
         ]);
@@ -57,12 +60,20 @@ class CreateTaskListHttpControllerTest extends WebTestCase
         self::assertJsonStringEqualsJsonString($response->getContent(), json_encode([
             'data' => [
                 'type'       => 'tasklists',
-                'id'         => '29ea0ea6-9f89-4019-b187-a90392f0b6ea',
+                'id'         => $expected->id()->toString(),
                 'attributes' => [
-                    'name'   => 'My beautiful task list',
-                    'user_id' => '9d6eeaeb-a4a2-4052-ab55-fe9a15582860',
+                    'name'   => $expected->name(),
+                    'user_id' => $expected->userId()->toString(),
                 ],
             ],
         ], JSON_THROW_ON_ERROR));
+
+        $this->manager->clear();
+        /** @var TaskList $actual */
+        $actual = $this->manager->find(TaskList::class, $expected->id());
+
+        self::assertTrue($expected->id()->equals($actual->id()));
+        self::assertTrue($expected->userId()->equals($actual->userId()));
+        self::assertEquals($expected->name(), $actual->name());
     }
 }
