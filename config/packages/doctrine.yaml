@@ -1,6 +1,7 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        platform_service: Framework\MySQLPlatform
         types:
             uuid: Ramsey\Uuid\Doctrine\UuidType
 

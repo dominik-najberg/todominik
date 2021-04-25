@@ -1,0 +1,17 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="App\Domain\Task\Task"
+            repository-class="App\Infrastructure\Repository\DoctrineTaskRepository">
+        <id name="id" type="uuid"/>
+        <field name="userId" type="uuid"/>
+        <field name="taskListId" type="uuid"/>
+        <field name="dueDate" type="datetime_immutable" precision="6" column-definition="DATETIME(6) NOT NULL COMMENT '(DC2Type:datetimetz_immutable)'"/>
+        <field name="content" type="string"/>
+        <field name="done" type="boolean"/>
+    </entity>
+
+</doctrine-mapping>

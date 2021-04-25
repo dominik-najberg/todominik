@@ -4,21 +4,19 @@ namespace App\Tests\Integration\Infrastructure\Repository;
 
 use App\Domain\Task\TaskList;
 use App\Infrastructure\Repository\DoctrineTaskListRepository;
+use App\Tests\Integration\Infrastructure\DbTestCase;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class DoctrineTaskListRepositoryTest extends KernelTestCase
+class DoctrineTaskListRepositoryTest extends DbTestCase
 {
-    private EntityManagerInterface     $manager;
     private DoctrineTaskListRepository $repository;
 
     protected function setUp(): void
     {
-        self::bootKernel();
-
-        $this->manager    = self::$container->get('doctrine')->getManager();
-        $this->repository = $this->manager->getRepository(TaskList::class);
+        parent::setUp();
+        $this->repository = $this->entityManager->getRepository(TaskList::class);
     }
 
     /**
@@ -28,10 +26,11 @@ class DoctrineTaskListRepositoryTest extends KernelTestCase
     {
         $expected = TaskList::create(Uuid::uuid4(),Uuid::uuid4(),'This name');
         $this->repository->add($expected);
-        $this->manager->flush();
-        $this->manager->clear();
 
-        $actual = $this->manager->find(TaskList::class, $expected->id());
+        $this->entityManager->flush();
+        $this->entityManager->clear();
+
+        $actual = $this->entityManager->find(TaskList::class, $expected->id());
 
         self::assertEquals($expected, $actual);
     }
