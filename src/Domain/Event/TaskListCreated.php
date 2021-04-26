@@ -9,9 +9,9 @@ class TaskListCreated
     private string $id;
     private string $userId;
     private string $name;
-    private string $createdAt;
+    private \DateTimeImmutable $createdAt;
 
-    public function __construct(string $id, string $userId, string $name, string $createdAt)
+    public function __construct(string $id, string $userId, string $name, \DateTimeImmutable $createdAt)
     {
         $this->id = $id;
         $this->userId = $userId;
@@ -34,7 +34,7 @@ class TaskListCreated
         return $this->name;
     }
 
-    public function createdAt(): string
+    public function createdAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }

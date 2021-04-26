@@ -2,16 +2,14 @@
 
 namespace App\Domain\Event;
 
-use Ramsey\Uuid\UuidInterface;
-
 class TaskCreated
 {
     private string $id;
-    private string  $taskListId;
-    private string  $userId;
-    private string  $dueDate;
+    private string $taskListId;
+    private string $userId;
+    private string $dueDate;
     private string $content;
-    private string  $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     public function __construct(
         string $id,
@@ -19,7 +17,7 @@ class TaskCreated
         string $userId,
         string $dueDate,
         string $content,
-        string $createdAt
+        \DateTimeImmutable $createdAt
     ) {
         $this->id = $id;
         $this->taskListId = $taskListId;
@@ -54,7 +52,7 @@ class TaskCreated
         return $this->content;
     }
 
-    public function createdAt(): string
+    public function createdAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }

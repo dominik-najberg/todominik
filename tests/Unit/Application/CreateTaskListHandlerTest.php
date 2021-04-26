@@ -25,7 +25,7 @@ class CreateTaskListHandlerTest extends TestCase
         $createdAt = new \DateTimeImmutable();
 
         $command = new CreateTaskList($taskListId, $userId, $name, $createdAt);
-        $event = new TaskListCreated($taskListId->toString(), $userId->toString(), $name, $createdAt->format('Y-m-d H:i:s.u'));
+        $event = new TaskListCreated($taskListId->toString(), $userId->toString(), $name, $createdAt);
 
         $eventBus = $this->createMock(MessageBusInterface::class);
         $eventBus

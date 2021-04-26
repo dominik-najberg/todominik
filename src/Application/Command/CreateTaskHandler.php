@@ -38,7 +38,7 @@ class CreateTaskHandler implements MessageHandlerInterface
                 $task->userId()->toString(),
                 $task->dueDate()->format('Y-m-d H:i:s.u'),
                 $task->content(),
-                $command->dueDate()->format('Y-m-d H:i:s.u'),
+                $command->dueDate(),
             )
         );
     }

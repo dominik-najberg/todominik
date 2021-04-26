@@ -2,7 +2,7 @@
 
 namespace App\Domain\Task;
 
-use App\Tests\Unit\Domain\Event\TaskMarkedAsDone;
+use App\Domain\Event\TaskMarkedAsDone;
 use Ramsey\Uuid\UuidInterface;
 
 class Task

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain\Event;
+namespace App\Domain\Event;
 
 class TaskMarkedAsDone
 {

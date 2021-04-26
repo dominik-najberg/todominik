@@ -2,9 +2,10 @@
 
 namespace App\Tests\Unit\Domain\Task;
 
+use App\Domain\Event\TaskMarkedAsDone;
 use App\Domain\Task\Task;
-use App\Tests\Unit\Domain\Event\TaskMarkedAsDone;
 use App\Tests\Util\DataProvider\Assembler\TaskAssembler;
+use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -15,11 +16,11 @@ class TaskTest extends TestCase
      */
     public function should_create(): void
     {
-        $id         = Uuid::fromString('8dd6b115-e3b4-4189-8e23-c5d9081624bb');
+        $id = Uuid::fromString('8dd6b115-e3b4-4189-8e23-c5d9081624bb');
         $taskListId = Uuid::fromString('c1630d83-2995-475e-864c-158b3f21542f');
-        $userId     = Uuid::fromString('c1630d83-2995-475e-864c-158b3f21542f');
-        $content    = 'Very important task';
-        $dueDate = new \DateTimeImmutable();
+        $userId = Uuid::fromString('c1630d83-2995-475e-864c-158b3f21542f');
+        $content = 'Very important task';
+        $dueDate = new DateTimeImmutable();
 
         $actual = Task::create($id, $taskListId, $userId, $dueDate, $content);
 

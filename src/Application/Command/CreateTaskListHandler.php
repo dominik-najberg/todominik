@@ -28,7 +28,7 @@ class CreateTaskListHandler implements MessageHandlerInterface
                 $taskList->id()->toString(),
                 $taskList->userId()->toString(),
                 $taskList->name(),
-                $command->createdAt()->format('Y-m-d H:i:s.u'),
+                $command->createdAt(),
             )
         );
 
