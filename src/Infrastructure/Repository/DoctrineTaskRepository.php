@@ -11,14 +11,14 @@ use Ramsey\Uuid\UuidInterface;
 
 class DoctrineTaskRepository extends ServiceEntityRepository implements TaskRepository
 {
-    public function __construct(ManagerRegistry $manager)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($manager, Task::class);
+        parent::__construct($registry, Task::class);
     }
 
-    public function add(Task $taskList): void
+    public function add(Task $task): void
     {
-        $this->_em->persist($taskList);
+        $this->_em->persist($task);
     }
 
     /**

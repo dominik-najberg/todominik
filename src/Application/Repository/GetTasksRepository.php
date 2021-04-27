@@ -3,15 +3,14 @@
 namespace App\Application\Repository;
 
 use App\Application\Exception\TaskNotFoundException;
-use App\Domain\Task\Task;
+use App\Application\Query\ViewModel\TaskDto;
 use Ramsey\Uuid\UuidInterface;
 
-interface TaskRepository
+interface GetTasksRepository
 {
-    public function add(Task $task): void;
-
     /**
      * @throws TaskNotFoundException
+     * @return TaskDto[]
      */
-    public function getById(UuidInterface $taskId): Task;
+    public function getByListId(UuidInterface $listId): array;
 }

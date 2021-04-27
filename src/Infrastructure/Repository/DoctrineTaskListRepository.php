@@ -9,9 +9,9 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class DoctrineTaskListRepository extends ServiceEntityRepository implements TaskListRepository
 {
-    public function __construct(ManagerRegistry $manager)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($manager, TaskList::class);
+        parent::__construct($registry, TaskList::class);
     }
 
     public function add(TaskList $taskList): void

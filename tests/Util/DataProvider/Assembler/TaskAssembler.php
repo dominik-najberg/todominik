@@ -29,12 +29,33 @@ class TaskAssembler
         return new self();
     }
 
+    public function withTaskId(UuidInterface $taskId): self
+    {
+        $this->id = $taskId;
+
+        return $this;
+    }
+
+    public function withContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function withTaskListId(UuidInterface $taskListId): self
+    {
+        $this->taskListId = $taskListId;
+
+        return $this;
+    }
+
     public function assemble(): Task
     {
         return Task::create(
             $this->id,
-            $this->userId,
             $this->taskListId,
+            $this->userId,
             $this->dateTimeImmutable,
             $this->content,
         );
