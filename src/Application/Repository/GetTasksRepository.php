@@ -9,8 +9,8 @@ use Ramsey\Uuid\UuidInterface;
 interface GetTasksRepository
 {
     /**
-     * @throws TaskNotFoundException
      * @return TaskDto[]
+     * @throws TaskNotFoundException
      */
     public function getByListId(UuidInterface $listId): array;
 }
