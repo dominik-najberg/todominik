@@ -6,3 +6,6 @@ docker-compose run app /var/www/bin/console doctrine:schema:drop -f
 docker-compose run app /var/www/bin/console doctrine:schema:create
 docker-compose run app /var/www/bin/phpunit
 ```
+
+I am trying my best to keep it as framework agnostic as possible. This is why I moved some classes to `\framework`.
+I did not add more endpoints as you see already how I would do it.
