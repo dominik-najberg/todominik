@@ -1,8 +1,15 @@
-FROM php:7.4-fpm
+FROM phpdockerio/php74-fpm:latest
+
+# Fix debconf warnings upon build
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid
+
+# Timezone bull
+ENV TZ=Europe/Warsaw
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,27 +19,27 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
+    unzip \
+    php7.4-mbstring \
+    php7.4-bcmath \
+    php7.4-xml \
+    php7.4-xmlrpc \
+    php7.4-zip \
+    php7.4-sqlite3 \
+    php7.4-mysql \
+    php7.4-pgsql \
+    php7.4-imap \
+    php7.4-readline \
+    php7.4-phpdbg \
+    php7.4-curl \
+    php7.4-dev \
+    php7.4-amqp \
+    php-pear \
+    php-ssh2 \
+    php-yaml \
+    php-memcached \
+    php-redis \
+    php-apcu \
+    php-xdebug \
+    curl \
     unzip
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Install Xdebug
-RUN pecl install xdebug-2.9.8 \
-    && docker-php-ext-enable xdebug
-
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
-
-# Set working directory
-WORKDIR /var/www
-
-USER $user

@@ -2,10 +2,15 @@ As a user, I want to have an ability to see a list of tasks for my day, so that 
 
 ```bash
 docker-compose up
-docker-compose run app /var/www/bin/console doctrine:schema:drop -f
-docker-compose run app /var/www/bin/console doctrine:schema:create
-docker-compose run app /var/www/bin/phpunit
+docker-compose run app bin/console doctrine:schema:drop -f
+docker-compose run app bin/console doctrine:schema:create
+docker-compose run app bin/phpunit
 ```
 
 I am trying my best to keep it as framework agnostic as possible. This is why I moved some classes to `\framework`.
 I did not add more endpoints as you already see how I would do it.
+
+```bash
+docker-compose run app bin/console task:create "just a task"
+docker-compose run app bin/console task:mark-as-done {uuid} 
+```
