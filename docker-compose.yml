@@ -48,6 +48,18 @@ services:
     networks:
       - internal
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/docker/rabbitmq/log/:/var/log/rabbitmq/
+    networks:
+      - internal
+
 networks:
   internal:
     driver: bridge

@@ -3,9 +3,10 @@
 namespace App\Application\Command;
 
 use App\Application\Repository\TaskRepository;
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class MarkTaskAsDoneHandler
+class MarkTaskAsDoneHandler implements MessageHandlerInterface
 {
     private TaskRepository $taskRepository;
     private MessageBusInterface $eventBus;
