@@ -14,3 +14,5 @@ case $1 in
   "init") init ;;
   "up") up ;;
 esac
+
+docker-compose run app $1 $2 "$3"

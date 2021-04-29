@@ -12,6 +12,6 @@ I did not add more endpoints as you already see how I would do it.
 You can try the CLI commands if you have the wish to do so:
 
 ```bash
-docker-compose run app bin/console task:create "just a task"
-docker-compose run app bin/console task:mark-as-done {uuid} 
+./dev bin/console task:create "just a task"
+./dev bin/console task:mark-as-done {uuid} 
 ```
