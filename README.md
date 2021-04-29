@@ -10,6 +10,9 @@ docker-compose run app bin/phpunit
 I am trying my best to keep it as framework agnostic as possible. This is why I moved some classes to `\framework`.
 I did not add more endpoints as you already see how I would do it.
 
+
+You can try the CLI commands if you have the wish to do so:
+
 ```bash
 docker-compose run app bin/console task:create "just a task"
 docker-compose run app bin/console task:mark-as-done {uuid} 
