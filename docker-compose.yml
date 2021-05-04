@@ -32,7 +32,7 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - ./docker/database:/docker-entrypoint-initdb.d
+      - ./docker/database:/var/lib/mysql
     networks:
       - internal
 
@@ -44,7 +44,7 @@ services:
       - 8000:80
     volumes:
       - ./:/var/www
-      - ./docker-compose/nginx:/etc/nginx/conf.d/
+      - ./docker/nginx:/etc/nginx/conf.d/
     networks:
       - internal
 

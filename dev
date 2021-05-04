@@ -13,6 +13,5 @@ function init() {
 case $1 in
   "init") init ;;
   "up") up ;;
+  *) docker-compose run app $1 $2 "$3";;
 esac
-
-docker-compose run app $1 $2 "$3"
