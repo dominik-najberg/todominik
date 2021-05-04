@@ -2,21 +2,21 @@
 
 namespace App\Domain\Event;
 
-use Ramsey\Uuid\UuidInterface;
-
 class TaskListCreated
 {
+    private const DATETIME_FORMAT = 'Y-m-d H:i:s.u';
+
     private string $id;
     private string $userId;
     private string $name;
-    private \DateTimeImmutable $createdAt;
+    private string $createdAt;
 
     public function __construct(string $id, string $userId, string $name, \DateTimeImmutable $createdAt)
     {
         $this->id = $id;
         $this->userId = $userId;
         $this->name = $name;
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt->format(self::DATETIME_FORMAT);
     }
 
     public function id(): string
@@ -36,6 +36,6 @@ class TaskListCreated
 
     public function createdAt(): \DateTimeImmutable
     {
-        return $this->createdAt;
+        return \DateTimeImmutable::createFromFormat(self::DATETIME_FORMAT, $this->createdAt);
     }
 }

@@ -4,12 +4,14 @@ namespace App\Domain\Event;
 
 class TaskCreated
 {
+    private const DATETIME_FORMAT = 'Y-m-d H:i:s.u';
+
     private string $id;
     private string $taskListId;
     private string $userId;
     private string $dueDate;
     private string $content;
-    private \DateTimeImmutable $createdAt;
+    private string $createdAt;
 
     public function __construct(
         string $id,
@@ -24,7 +26,7 @@ class TaskCreated
         $this->userId = $userId;
         $this->dueDate = $dueDate;
         $this->content = $content;
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt->format(self::DATETIME_FORMAT);
     }
 
     public function id(): string
@@ -54,6 +56,6 @@ class TaskCreated
 
     public function createdAt(): \DateTimeImmutable
     {
-        return $this->createdAt;
+        return \DateTimeImmutable::createFromFormat(self::DATETIME_FORMAT, $this->createdAt);
     }
 }
