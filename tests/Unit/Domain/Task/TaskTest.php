@@ -37,9 +37,11 @@ class TaskTest extends TestCase
     public function should_mark_as_done(): void
     {
         $task = TaskAssembler::new()->assemble();
-        $expected = new TaskMarkedAsDone($task->id()->toString(), $task->userId()->toString());
+        $expectedEvent = new TaskMarkedAsDone($task->id()->toString(), $task->userId()->toString());
 
         $actual = $task->markAsDone($task->userId());
-        self::assertEquals($expected, $actual);
+
+        self::assertTrue($task->done());
+        self::assertEquals($expectedEvent, $actual);
     }
 }
